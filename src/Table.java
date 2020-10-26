@@ -1,4 +1,4 @@
-package domino;
+package src;
 
 public class Table {
     

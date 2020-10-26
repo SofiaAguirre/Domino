@@ -1,5 +1,5 @@
 
-package domino;
+package src;
 
 import java.util.ArrayList;
 
