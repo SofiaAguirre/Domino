@@ -63,7 +63,6 @@ public class Table {
         
     }
 
-
     public static String getLeft(){
         return openLeft;
     }
@@ -74,7 +73,7 @@ public class Table {
 
     public static String openEnds(){
         String open = "";
-        open += "Numero disponible izquierdo: " + getLeft() + "\nNumero disponible derecho " + getRight();
+        open += "Numero disponible izquierda: " + getLeft() + "\nNumero disponible derecha " + getRight();
         return open;
     }
 

@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Game {
     
-    public static int dominoPieces = 28;
-    public static boolean canPlay = true;
+    private static int dominoPieces = 28;
+    private static boolean canPlay = true;
     
     public static void main(String[] args) {
         
@@ -41,29 +41,29 @@ public class Game {
             else if(player2.getDominoCount() <= 0){
                 playerTwoPieces = false;
             }
-            
             if(turn % 2 == 1){
-                //player1
-                System.out.println(table.openEnds());
-                System.out.println(player1.printHand());
-                System.out.println("Jugador1: \n 1-Seleccionar pieza \n 2-Pasar");
-                choice(input, player1, table);
-                turn++;
-                
-            }
-            else if(turn % 2 == 0){
-                //player2
-                System.out.println(table.openEnds());
-                System.out.println(player2.printHand());
-                System.out.println("Jugador1: \n 1-Seleccionar pieza \n 2-Pasar");
-                choice(input, player2, table);
-                turn++;
+                //Jugador1
+                int type = 1;
+                turn = playTurn(input, player1, table, turn, type);
+            } else if(turn % 2 == 0){
+                //Jugador2
+                int type = 2;
+                turn = playTurn(input, player2, table, turn, type);
             }
         }
         winner(player1, player2);
     }
 
-    public static void choice(Scanner input, Player player, Table table){
+    private static int playTurn(Scanner input, Player player, Table table, int turn, int type) {
+        System.out.println(Table.openEnds());
+        System.out.println(player.printHand());
+        System.out.println("Jugador" + type + ": \n 1-Seleccionar pieza \n 2-Pasar");
+        choice(input, player, table);
+        turn++;
+        return turn;
+    }
+
+    private static void choice(Scanner input, Player player, Table table){
         int choice;
         choice = input.nextInt();
         if(choice == 2){
@@ -77,7 +77,7 @@ public class Game {
         }
     }
 
-    public static void pass(Player player){
+    private static void pass(Player player){
         dominoPieces--;
         if(dominoPieces > 0){
             player.giveDomino();
@@ -89,7 +89,7 @@ public class Game {
         }
     }
 
-    public static void place(Scanner input, Player player, Table table){
+    private static void place(Scanner input, Player player, Table table){
         System.out.println("Seleccione una pieza: ");
         int domino = input.nextInt();
         input.nextLine();
@@ -100,17 +100,15 @@ public class Game {
         table.placePiece(side, piece, player, domino);
     }
 
-    public static void winner(Player player1, Player player2){
+    private static void winner(Player player1, Player player2){
         if(player1.getDominoCount() < player2.getDominoCount()){
             System.out.println("Jugador1 es el ganador!");
             System.out.println("Con: " + player1.getDominoCount() + " piezas!");
-        }
-        else if(player1.getDominoCount() > player2.getDominoCount()){
+        } else if(player1.getDominoCount() > player2.getDominoCount()){
             System.out.println("Jugador2 es el ganador!");
-            System.out.println("Con: " + player1.getDominoCount() + " piezas!");
-        }
-        else{
-            System.out.println("Empate.");
+            System.out.println("Con: " + player2.getDominoCount() + " piezas!");
+        } else{
+            System.out.println("Empate");
         }
     }
     
