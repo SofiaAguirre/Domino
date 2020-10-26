@@ -16,7 +16,8 @@ public class Game {
         Player player1 = new Player(domino, random);
         Player player2 = new Player(domino, random);
         Table table = new Table();
-        dominoPieces = 8;
+        //Luego de que ambos jugadores tengan sus respectivas manos quedaran 14 fichas
+        dominoPieces = 14;
         int turn = 1;
         System.out.println();
         System.out.println("Jugador1: Elija una pieza para comenzar el juego:");
@@ -81,7 +82,7 @@ public class Game {
         dominoPieces--;
         if(dominoPieces > 0){
             player.giveDomino();
-            System.out.println("Seleccione una pieza:");
+            System.out.println("Se ha agarrado una pieza aleatoria de las restantes.");
         }
         else{
             System.out.println("No quedan más piezas disponibles.");

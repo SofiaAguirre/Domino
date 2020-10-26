@@ -17,7 +17,7 @@ public class Player {
     }
 
     public void createHand(){
-        int startingHand = 10;
+        int startingHand = 7;
         for(int i = 0; i < startingHand; i++){
             giveDomino();
         }
